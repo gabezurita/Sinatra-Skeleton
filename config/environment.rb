@@ -14,6 +14,7 @@ require 'pathname'
 require 'pg'
 require 'active_record'
 require 'logger'
+# BE SURE TO INCLUDE THIS FOR bcrypt LOGGING IN LOG IN
 require 'bcrypt'
 require 'faker'
 

@@ -1,0 +1,23 @@
+<% if @errors %>
+    <p class="error"><%= @errors %></p>
+<% end %>
+
+<h1> Subscribed Channels:</h1>
+<% @user.channels.each do |channel| %>
+  <ul>
+    <li><a href='/channels/<%=channel.id%>'><%=channel.name%></a></li>
+  </ul>
+<% end %>
+
+<h1> Monthly Channel Fee:</h1>
+<% sum = 0 %>
+<% @user.channels.each do |channel| %>
+  <% sum += channel.price_per_month %>
+<% end %>
+<%= sum %>
+
+<!--ALTERNATIVE  -->
+<!-- 
+<%= erb(:"_nav") %>
+
+<h2><%= "#{@user.first_name} #{@user.last_name}" %></h1> -->
