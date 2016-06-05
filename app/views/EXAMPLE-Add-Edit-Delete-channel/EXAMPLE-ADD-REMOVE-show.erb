@@ -1,0 +1,28 @@
+<h1> Channel Info:</h1>
+<h2> <%= @channel.name %> </h2>
+<p> Price Per Month: $<%= @channel.price_per_month %></p>
+<p> Total Subscribers: <%= @channel.total_subscribers %></p>
+
+<% if logged_in?%>
+   <% if @user_subscription != nil && @user_subscription.user_id == current_user.id %>
+     <form action='/users/<%= current_user.id %>/subscriptions/<%= @user_subscription.id %>' method='post'>
+       <input type="hidden" name="_method" value="delete">
+       <!-- The following line is unnecessary, user current_user -->
+       <input type="hidden" name="user_id" value="">
+       <!--The following is unnecessary, present in refactored, more RESTful route  -->
+       <input type="hidden" name="channel_id" value="<%= @channel.id %>">
+       <input class="button" type='submit' value='Remove Channel'>
+    </form>
+ <%else  %>
+ <!--Fix route for refactor-->
+   <form action='/users/<%= current_user.id %>/subscriptions' method='post'>
+     <!-- The following line is unnecessary, user current_user -->
+     <input type="hidden" name="user_id" value="<%= current_user.id %>">
+     <!--The following is unnecessary, present in refactored, more RESTful route  -->
+     <input type="hidden" name="channel_id" value="<%= @channel.id %>">
+     <input class="button" type='submit' value='Add Channel'>
+  </form>
+   <% end %>
+
+ <% end %>
+</section>

@@ -13,6 +13,8 @@ gem 'activesupport', '~>4.2.0'
 gem 'activerecord', '~>4.2.0'
 
 gem 'rake'
+
+# BE SURE TO INCLUDE THIS FOR bcrypt LOGGING IN LOG IN
 gem 'bcrypt'
 
 gem 'shotgun'
