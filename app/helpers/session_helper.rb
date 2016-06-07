@@ -1,5 +1,4 @@
 helpers do
-
   def logged_in?
     session[:user_id] != nil
   end
@@ -12,4 +11,8 @@ helpers do
     redirect '/login' unless logged_in?
   end
 
+  # @from @mike, this is used to automatically log sin user when they register (optional)
+  def login(user)
+    session[:user_id] = user.id
+  end
 end

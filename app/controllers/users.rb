@@ -6,6 +6,8 @@ post '/users' do
   @user = User.new(params[:user])
   if @user.save
     redirect '/'
+    # alternative, log in automatically:
+    # login(@user)
   else
     @errors = @user.errors.full_messages
     erb :'/users/new'
