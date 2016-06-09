@@ -4,15 +4,15 @@ helpers do
   end
 
   def current_user
-    @_cached_user ||= User.find(session[:user_id]) if logged_in?
+    @current_user ||= User.find_by(id: session[:user_id])
   end
 
   def authorize!
-    redirect '/login' unless logged_in?
-  end
-
-  # @from @mike, this is used to automatically log sin user when they register (optional)
-  def login(user)
-    session[:user_id] = user.id
+    redirect '/users/login' unless logged_in?
   end
 end
+
+#   # @from @mike, this is used to automatically log sin user when they register (optional)
+#
+
+# end

@@ -25,3 +25,17 @@
 #                          channel: channel)
 #   end
 # end
+
+# EXAMPLE 2:
+# require 'faker'
+#
+# 10.times do
+#   Entry.create!(title: Faker::Lorem.words(num = 3).join(" "),
+#     body: Faker::Lorem.sentences(sentence_count = 2).join("  "))
+# end
+#
+# Tag.create!(name: "Sexy")
+#
+# Tagging.create!(entry_id: 1, tag_id: 1, user_id: 1)
+#
+# User.create!(username: "Gabo", email: "gabo@gabo.com", password: "password" )

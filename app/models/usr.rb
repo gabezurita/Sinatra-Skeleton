@@ -1,36 +1,31 @@
 require 'bcrypt'
 
-Class User < ActiveRecord::Base
+class User < ActiveRecord::Base
+  validates :username, presence: true
+  validates :username, uniqueness: true
   validates :email, presence: true
   validates :email, uniqueness: true
-  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-  validates :password, presence: true
+
+  # optional:
+  # validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  # validates :password, presence: true
 
   include BCrypt
-
 
   def password
     @password ||= Password.new(password_hash)
   end
 
-
   def password=(new_password)
     @password = Password.create(new_password)
-    self.password_hash = @password
+    self.password_hash= @password
   end
 
-  def self.authenticate(email, password_attempt)
-    # if email and password correspond to a valid user, return that user
-    # otherwise, return nil
-    @user = User.find_by email: email
-    if @user && @user.password == password_attempt
-      return @user
-    end
-    nil
+  def authenticate(text_password)
+    self.password == text_password
   end
 
   def get_name
     self.first_name
   end
-
 end
